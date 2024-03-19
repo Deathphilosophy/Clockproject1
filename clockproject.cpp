@@ -28,30 +28,34 @@ int main()
 
     string meridianHour = makeMeridianHour(userHour);
 
-    clockDisplay(meridianHour, formatHour, formatMinute, formatSecond);
-    // menu
-    menuDisplay();
-
 
     // menu loop
+
+
     while (userInput != 4) {
+
+        clockDisplay(meridianHour, formatHour, formatMinute, formatSecond);
+        // menu
+        menuDisplay();
 
         cin >> userInput;
         switch (userInput)
         {
-        case 1:
-        {
-            break;
-        }
+            case 1:
+            {
+                userHour++;
+                userHour = maxHour(userHour);
+                std::string formatHour = formatTime(userHour);
+            }
 
-        case 2:
-        {
-            break;
-        }
+            case 2:
+         {
+                break;
+          }
 
-        case 3:
-        {
-            userSecond++;
+            case 3:
+            {
+                userSecond++;
 
             break;
 
