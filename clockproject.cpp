@@ -33,7 +33,7 @@ int main()
 
 
     while (userInput != 4) {
-
+        meridianHour = makeMeridianHour(userHour);
         clockDisplay(meridianHour, formatHour, formatMinute, formatSecond);
         // menu
         menuDisplay();
@@ -45,17 +45,76 @@ int main()
             {
                 userHour++;
                 userHour = maxHour(userHour);
-                std::string formatHour = formatTime(userHour);
+                formatHour = formatTime(userHour);
+
+                break;
+
             }
 
             case 2:
-         {
-                break;
+          {
+                userMinute++;
+                if (userMinute >= 60)
+                {
+                    userHour++;
+                    userHour = maxHour(userHour);
+                    formatHour = formatTime(userHour);
+
+                    userMinute = maxMinute(userMinute);
+                    formatMinute = formatTime(userMinute);
+
+
+                    break;
+                }
+                else
+                {
+
+                    userMinute = maxMinute(userMinute);
+                    formatMinute = formatTime(userMinute);
+
+                    break;
+                }
           }
 
             case 3:
             {
                 userSecond++;
+
+                if (userSecond >= 60)
+                {
+                    userMinute++;
+                    if (userMinute >= 60)
+                    {
+                        userHour++;
+                        userHour = maxHour(userHour);
+                        formatHour = formatTime(userHour);
+
+                        userMinute = maxMinute(userMinute);
+                        formatMinute = formatTime(userMinute);
+
+
+                        userSecond = maxSecond(userSecond);
+                        formatSecond = formatTime(userSecond);
+                        break;
+                    }
+                    else
+                    {
+
+                        userMinute = maxMinute(userMinute);
+                        formatMinute = formatTime(userMinute);
+
+                        userSecond = maxSecond(userSecond);
+                        formatSecond = formatTime(userSecond);
+                        break;
+                    }
+                }
+                else
+                {
+                    userSecond = maxSecond(userSecond);
+                    formatSecond = formatTime(userSecond);
+                    break;
+                }
+                
 
             break;
 
